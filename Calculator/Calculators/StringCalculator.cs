@@ -17,6 +17,6 @@ public class StringCalculator
 
         if (hasOneNumber) return decimal.Parse(numbers);
 
-        return default;
+        return _commaSeperatedCalculator.CommaSeperatedAdd(numbers);
     }
 }
