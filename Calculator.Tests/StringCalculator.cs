@@ -2,8 +2,10 @@ namespace Calculator.Tests;
 
 public class StringCalculator
 {
-    public decimal Add(string testString)
+    public decimal Add(string numbers)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrEmpty(numbers)) return 0;
+
+        return default;
     }
 }
