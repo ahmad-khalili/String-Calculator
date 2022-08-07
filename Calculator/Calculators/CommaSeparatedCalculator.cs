@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculators;
 
-public class CommaSeperatedCalculator : ICommaSeperatedCalculator
+public class CommaSeparatedCalculator : ICommaSeparatedCalculator
 {
     public decimal CommaSeperatedAdd(string numbers)
     {

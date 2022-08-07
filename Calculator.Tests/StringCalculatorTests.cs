@@ -5,10 +5,10 @@ namespace Calculator.Tests;
 public class StringCalculatorTests
 {
     private readonly StringCalculator _stringCalculator;
-    private readonly Mock<ICommaSeperatedCalculator> _commaSeperatedCalculatorMock;
+    private readonly Mock<ICommaSeparatedCalculator> _commaSeperatedCalculatorMock;
     public StringCalculatorTests()
     {
-        _commaSeperatedCalculatorMock = new Mock<ICommaSeperatedCalculator>();
+        _commaSeperatedCalculatorMock = new Mock<ICommaSeparatedCalculator>();
         _stringCalculator = new StringCalculator(_commaSeperatedCalculatorMock.Object);
     }
     

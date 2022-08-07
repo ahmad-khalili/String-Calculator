@@ -2,11 +2,11 @@ namespace Calculator.Calculators;
 
 public class StringCalculator
 {
-    private readonly ICommaSeperatedCalculator _commaSeperatedCalculator;
+    private readonly ICommaSeparatedCalculator _commaSeparatedCalculator;
 
-    public StringCalculator(ICommaSeperatedCalculator commaSeperatedCalculator)
+    public StringCalculator(ICommaSeparatedCalculator commaSeparatedCalculator)
     {
-        _commaSeperatedCalculator = commaSeperatedCalculator;
+        _commaSeparatedCalculator = commaSeparatedCalculator;
     }
     
     public decimal Add(string numbers)
@@ -17,6 +17,6 @@ public class StringCalculator
 
         if (hasOneNumber) return decimal.Parse(numbers);
 
-        return _commaSeperatedCalculator.CommaSeperatedAdd(numbers);
+        return _commaSeparatedCalculator.CommaSeperatedAdd(numbers);
     }
 }
