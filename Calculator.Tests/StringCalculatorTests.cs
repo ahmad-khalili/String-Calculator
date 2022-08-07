@@ -31,4 +31,15 @@ public class StringCalculatorTests
 
         actual.Should().Be(expected);
     }
+
+    [Fact]
+    public void TwoNumbersStringAdditionTest_ShouldReturnSum()
+    {
+        var expected = 3;
+        var testString = "1,2";
+
+        var actual = _stringCalculator.Add(testString);
+
+        actual.Should().Be(expected);
+    }
 }
