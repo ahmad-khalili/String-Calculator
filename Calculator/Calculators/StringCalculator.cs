@@ -1,4 +1,4 @@
-namespace Calculator.Tests;
+namespace Calculator.Calculators;
 
 public class StringCalculator
 {
