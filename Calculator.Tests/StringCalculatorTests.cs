@@ -4,14 +4,19 @@ namespace Calculator.Tests;
 
 public class StringCalculatorTests
 {
+    private readonly StringCalculator _stringCalculator;
+    public StringCalculatorTests()
+    {
+        _stringCalculator = new StringCalculator();
+    }
+    
     [Fact]
     public void EmptyNumbersStringAdditionTest_ShouldReturnZero()
     {
-        var stringCalculator = new StringCalculator();
         var expected = 0;
         var testString = "";
 
-        var actual = stringCalculator.Add(testString);
+        var actual = _stringCalculator.Add(testString);
 
         actual.Should().Be(expected);
     }
@@ -19,11 +24,10 @@ public class StringCalculatorTests
     [Fact]
     public void OneNumberStringAdditionTest_ShouldReturnNumber()
     {
-        var stringCalculator = new StringCalculator();
         var expected = 1;
         var testString = "1";
 
-        var actual = stringCalculator.Add(testString);
+        var actual = _stringCalculator.Add(testString);
 
         actual.Should().Be(expected);
     }
