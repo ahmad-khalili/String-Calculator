@@ -40,6 +40,9 @@ public class StringCalculatorTests
         var expected = 3;
         var testString = "1,2";
 
+        _commaSeperatedCalculatorMock.Setup(x => x.CommaSeperatedAdd(testString))
+            .Returns(expected);
+
         var actual = _stringCalculator.Add(testString);
 
         actual.Should().Be(expected);
