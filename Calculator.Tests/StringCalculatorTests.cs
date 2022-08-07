@@ -9,7 +9,7 @@ public class StringCalculatorTests
     public StringCalculatorTests()
     {
         _commaSeperatedCalculatorMock = new Mock<ICommaSeperatedCalculator>();
-        _stringCalculator = new StringCalculator();
+        _stringCalculator = new StringCalculator(_commaSeperatedCalculatorMock.Object);
     }
     
     [Fact]
