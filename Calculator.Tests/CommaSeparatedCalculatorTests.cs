@@ -16,7 +16,7 @@ public class CommaSeparatedCalculatorTests
     [InlineData("1,2,3", 6)]
     public void CommaSeparatedAdditionTest_ShouldReturnCorrespondingExpectedResult(string numbers, decimal expected)
     {
-        var actual = _commaSeparatedCalculator.CommaSeperatedAdd(numbers);
+        var actual = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
 
         actual.Should().Be(expected);
     }
@@ -28,7 +28,17 @@ public class CommaSeparatedCalculatorTests
     public void MoreThanTwoGivenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
-        var actual = _commaSeparatedCalculator.CommaSeperatedAdd(numbers);
+        var actual = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
+
+        actual.Should().Be(expected);
+    }
+
+    [Theory]
+    [InlineData("1\n2,3", 6)]
+    public void NewLineBetweenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
+        decimal expected)
+    {
+        var actual = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
 
         actual.Should().Be(expected);
     }
