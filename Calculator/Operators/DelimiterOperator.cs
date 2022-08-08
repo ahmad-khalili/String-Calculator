@@ -11,7 +11,6 @@ public class DelimiterOperator : IDelimiterOperator
         {
             var delimiterPrefixIndex = 1;
             var delimiter = char.Parse(numbers.Substring(delimiterPrefixIndex + 1));
-            StringConstants.Splitters.Add(delimiter);
             return delimiter;
         }
 
