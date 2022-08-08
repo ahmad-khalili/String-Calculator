@@ -11,25 +11,14 @@ public class StringCalculatorTests
         _commaSeperatedCalculatorMock = new Mock<ICommaSeparatedCalculator>();
         _stringCalculator = new StringCalculator(_commaSeperatedCalculatorMock.Object);
     }
-    
-    [Fact]
-    public void EmptyNumbersStringAdditionTest_ShouldReturnZero()
+
+    [Theory]
+    [InlineData("",0)]
+    [InlineData("1",1)]
+    public void EmptyAndOneNumberStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
+        decimal expected)
     {
-        var expected = 0;
-        var testString = "";
-
-        var actual = _stringCalculator.Add(testString);
-
-        actual.Should().Be(expected);
-    }
-
-    [Fact]
-    public void OneNumberStringAdditionTest_ShouldReturnNumber()
-    {
-        var expected = 1;
-        var testString = "1";
-
-        var actual = _stringCalculator.Add(testString);
+        var actual = _stringCalculator.Add(numbers);
 
         actual.Should().Be(expected);
     }
