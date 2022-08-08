@@ -20,4 +20,16 @@ public class CommaSeparatedCalculatorTests
 
         actual.Should().Be(expected);
     }
+    
+    [Theory]
+    [InlineData("2,2,4",8)]
+    [InlineData("4,2,1,1",8)]
+    [InlineData("5,0,1,3,4",13)]
+    public void MoreThanTwoGivenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
+        decimal expected)
+    {
+        var actual = _commaSeparatedCalculator.CommaSeperatedAdd(numbers);
+
+        actual.Should().Be(expected);
+    }
 }
