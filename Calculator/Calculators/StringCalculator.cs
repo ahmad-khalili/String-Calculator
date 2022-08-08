@@ -2,6 +2,8 @@ namespace Calculator.Calculators;
 
 public class StringCalculator
 {
+    private readonly char[] _splitters = { ',', '\n' };
+    
     private readonly ICommaSeparatedCalculator _commaSeparatedCalculator;
 
     public StringCalculator(ICommaSeparatedCalculator commaSeparatedCalculator)
@@ -13,7 +15,7 @@ public class StringCalculator
     {
         if (string.IsNullOrEmpty(numbers)) return 0;
 
-        var hasOneNumber = !numbers.Contains(',');
+        var hasOneNumber = !_splitters.Any(numbers.Contains);
 
         if (hasOneNumber) return decimal.Parse(numbers);
 
