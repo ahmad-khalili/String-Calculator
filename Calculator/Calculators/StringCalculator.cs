@@ -28,7 +28,7 @@ public class StringCalculator
 
         if (hasOneNumber) return decimal.Parse(numbers);
 
-        var result = _separatedNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
+        var result = _separatedNumbersCalculator.SeparatedNumbersAdd(numbers);
 
         if (delimiterExists) _delimiterOperator.RemoveDelimiter(delimiter);
 

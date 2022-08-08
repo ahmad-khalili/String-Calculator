@@ -33,7 +33,7 @@ public class StringCalculatorTests
         var expected = 3;
         var testString = "1,2";
 
-        _commaSeperatedCalculatorMock.Setup(x => x.CommaNewLineSeperatedAdd(testString))
+        _commaSeperatedCalculatorMock.Setup(x => x.SeparatedNumbersAdd(testString))
             .Returns(expected);
 
         var actual = _stringCalculator.Add(testString);
@@ -48,7 +48,7 @@ public class StringCalculatorTests
     public void MoreThanTwoGivenNumbersStringValidationTest_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
-        _commaSeperatedCalculatorMock.Setup(x => x.CommaNewLineSeperatedAdd(numbers))
+        _commaSeperatedCalculatorMock.Setup(x => x.SeparatedNumbersAdd(numbers))
             .Returns(expected);
 
         var actual = _stringCalculator.Add(numbers);
@@ -62,7 +62,7 @@ public class StringCalculatorTests
     public void NewLineBetweenNumbersStringValidationTest_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
-        _commaSeperatedCalculatorMock.Setup(x => x.CommaNewLineSeperatedAdd(numbers))
+        _commaSeperatedCalculatorMock.Setup(x => x.SeparatedNumbersAdd(numbers))
             .Returns(expected);
         
         var actual = _stringCalculator.Add(numbers);
@@ -80,7 +80,7 @@ public class StringCalculatorTests
         _delimiterOperatorMock.Setup(x => x.GetDelimiter(numbers))
             .Returns(delimiter);
         
-        _commaSeperatedCalculatorMock.Setup(x => x.CommaNewLineSeperatedAdd(numbers))
+        _commaSeperatedCalculatorMock.Setup(x => x.SeparatedNumbersAdd(numbers))
             .Returns(expected);
 
         var actual = _stringCalculator.Add(numbers);

@@ -4,7 +4,7 @@ namespace Calculator.Calculators;
 
 public class SeparatedNumbersNumbersCalculator : ISeparatedNumbersCalculator
 {
-    public decimal CommaNewLineSeperatedAdd(string numbers)
+    public decimal SeparatedNumbersAdd(string numbers)
     {
         numbers = numbers.TrimStart('/');
         var numbersArray = numbers.Split(StringConstants.Splitters.ToArray());

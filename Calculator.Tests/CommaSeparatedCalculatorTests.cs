@@ -17,7 +17,7 @@ public class CommaSeparatedCalculatorTests
     [InlineData("1,2,3", 6)]
     public void CommaSeparatedAdditionTest_ShouldReturnCorrespondingExpectedResult(string numbers, decimal expected)
     {
-        var actual = _separatedNumbersNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
+        var actual = _separatedNumbersNumbersCalculator.SeparatedNumbersAdd(numbers);
 
         actual.Should().Be(expected);
     }
@@ -29,7 +29,7 @@ public class CommaSeparatedCalculatorTests
     public void MoreThanTwoGivenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
-        var actual = _separatedNumbersNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
+        var actual = _separatedNumbersNumbersCalculator.SeparatedNumbersAdd(numbers);
 
         actual.Should().Be(expected);
     }
@@ -39,7 +39,7 @@ public class CommaSeparatedCalculatorTests
     public void NewLineBetweenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
-        var actual = _separatedNumbersNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
+        var actual = _separatedNumbersNumbersCalculator.SeparatedNumbersAdd(numbers);
 
         actual.Should().Be(expected);
     }
@@ -52,7 +52,7 @@ public class CommaSeparatedCalculatorTests
         var delimiter = ';';
         StringConstants.Splitters.Add(delimiter);
 
-        var actual = _separatedNumbersNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
+        var actual = _separatedNumbersNumbersCalculator.SeparatedNumbersAdd(numbers);
 
         actual.Should().Be(expected);
         StringConstants.Splitters.Remove(delimiter);

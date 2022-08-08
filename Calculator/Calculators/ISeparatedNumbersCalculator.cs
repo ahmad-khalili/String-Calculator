@@ -2,5 +2,5 @@
 
 public interface ISeparatedNumbersCalculator
 {
-    decimal CommaNewLineSeperatedAdd(string numbers);
+    decimal SeparatedNumbersAdd(string numbers);
 }
