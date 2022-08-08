@@ -19,7 +19,7 @@ public class DelimiterOperator : IDelimiterOperator
 
     public void AddDelimiter(char delimiter)
     {
-        throw new NotImplementedException();
+        StringConstants.Splitters.Add(delimiter);
     }
 
     public void RemoveDelimiter(char delimiter)
