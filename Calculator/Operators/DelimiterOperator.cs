@@ -2,7 +2,7 @@
 
 namespace Calculator.Operators;
 
-public class StringOperator
+public class DelimiterOperator : IDelimiterOperator
 {
     public char GetDelimiter(string numbers)
     {
@@ -16,5 +16,15 @@ public class StringOperator
         }
 
         return default;
+    }
+
+    public void AddDelimiter(char delimiter)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void RemoveDelimiter(char delimiter)
+    {
+        throw new NotImplementedException();
     }
 }
