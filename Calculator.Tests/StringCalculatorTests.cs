@@ -29,7 +29,7 @@ public class StringCalculatorTests
         var expected = 3;
         var testString = "1,2";
 
-        _commaSeperatedCalculatorMock.Setup(x => x.CommaSeperatedAdd(testString))
+        _commaSeperatedCalculatorMock.Setup(x => x.CommaNewLineSeperatedAdd(testString))
             .Returns(expected);
 
         var actual = _stringCalculator.Add(testString);
@@ -44,7 +44,7 @@ public class StringCalculatorTests
     public void MoreThanTwoGivenNumbersStringValidationTest_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
-        _commaSeperatedCalculatorMock.Setup(x => x.CommaSeperatedAdd(numbers))
+        _commaSeperatedCalculatorMock.Setup(x => x.CommaNewLineSeperatedAdd(numbers))
             .Returns(expected);
 
         var actual = _stringCalculator.Add(numbers);

@@ -2,5 +2,5 @@
 
 public interface ICommaSeparatedCalculator
 {
-    decimal CommaSeperatedAdd(string numbers);
+    decimal CommaNewLineSeperatedAdd(string numbers);
 }

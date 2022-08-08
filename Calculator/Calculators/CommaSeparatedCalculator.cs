@@ -2,7 +2,7 @@
 
 public class CommaSeparatedCalculator : ICommaSeparatedCalculator
 {
-    public decimal CommaSeperatedAdd(string numbers)
+    public decimal CommaNewLineSeperatedAdd(string numbers)
     {
         var numbersArray = numbers.Split(',', '\n');
         decimal result = 0;
