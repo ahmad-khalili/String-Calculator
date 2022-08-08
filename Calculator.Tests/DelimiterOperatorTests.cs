@@ -29,6 +29,8 @@ public class DelimiterOperatorTests
         _delimiterOperator.AddDelimiter(delimiter);
         
         StringConstants.Splitters.Should().Contain(delimiter);
+
+        StringConstants.Splitters.Remove(delimiter);
     }
     
     [Fact]
