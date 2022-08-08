@@ -20,4 +20,24 @@ public class DelimiterOperatorTests
 
         actual.Should().Be(expected);
     }
+    
+    [Fact]
+    public void AddDelimiterTest_ShouldAddDelimiterToSplitters()
+    {
+        var delimiter = ';';
+
+        _delimiterOperator.AddDelimiter(delimiter);
+        
+        StringConstants.Splitters.Should().Contain(delimiter);
+    }
+    
+    [Fact]
+    public void RemoveDelimiterTest_ShouldRemoveDelimiterFromSplitters()
+    {
+        var delimiter = ';';
+
+        _delimiterOperator.RemoveDelimiter(delimiter);
+
+        StringConstants.Splitters.Should().NotContain(delimiter);
+    }
 }
