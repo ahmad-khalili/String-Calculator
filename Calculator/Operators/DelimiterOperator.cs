@@ -9,8 +9,8 @@ public class DelimiterOperator : IDelimiterOperator
         var delimiterPrefix = "//";
         if (numbers.StartsWith(delimiterPrefix))
         {
-            var delimiterPrefixIndex = 1;
-            var delimiter = char.Parse(numbers.Substring(delimiterPrefixIndex + 1));
+            var delimiterIndex = 2;
+            var delimiter = numbers[delimiterIndex];
             return delimiter;
         }
 
