@@ -35,6 +35,7 @@ public class DelimiterOperatorTests
     public void RemoveDelimiterTest_ShouldRemoveDelimiterFromSplitters()
     {
         var delimiter = ';';
+        StringConstants.Splitters.Add(delimiter);
 
         _delimiterOperator.RemoveDelimiter(delimiter);
 
