@@ -42,4 +42,14 @@ public class CommaSeparatedCalculatorTests
 
         actual.Should().Be(expected);
     }
+    
+    [Theory]
+    [InlineData("//;\n1;2", 6)]
+    public void DelimiterBetweenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
+        decimal expected)
+    {
+        var actual = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
+
+        actual.Should().Be(expected);
+    }
 }

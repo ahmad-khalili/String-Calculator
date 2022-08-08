@@ -65,4 +65,17 @@ public class StringCalculatorTests
 
         actual.Should().Be(expected);
     }
+    
+    [Theory]
+    [InlineData("//;\n1;2", 6)]
+    public void DelimiterBetweenNumbersStringValidationTest_ShouldReturnCorrespondingExpectedValue(string numbers,
+        decimal expected)
+    {
+        _commaSeperatedCalculatorMock.Setup(x => x.CommaNewLineSeperatedAdd(numbers))
+            .Returns(expected);
+        
+        var actual = _stringCalculator.Add(numbers);
+
+        actual.Should().Be(expected);
+    }
 }
