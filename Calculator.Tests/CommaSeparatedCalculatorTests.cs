@@ -1,11 +1,12 @@
 ﻿using Calculator.Calculators;
+using Calculator.Constants;
+using Calculator.Operators;
 
 namespace Calculator.Tests;
 
 public class CommaSeparatedCalculatorTests
 {
     private readonly CommaSeparatedCalculator _commaSeparatedCalculator;
-
     public CommaSeparatedCalculatorTests()
     {
         _commaSeparatedCalculator = new CommaSeparatedCalculator();
@@ -43,13 +44,17 @@ public class CommaSeparatedCalculatorTests
         actual.Should().Be(expected);
     }
     
-    [Theory]
-    [InlineData("//;\n1;2", 6)]
-    public void DelimiterBetweenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
-        decimal expected)
+    [Fact]
+    public void DelimiterBetweenNumbersStringAdditionTest_ShouldReturnThree()
     {
+        var numbers = "//;\n1;2";
+        var expected = 3M;
+        var delimiter = ';';
+        StringConstants.Splitters.Add(delimiter);
+
         var actual = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
 
         actual.Should().Be(expected);
+        StringConstants.Splitters.Remove(delimiter);
     }
 }

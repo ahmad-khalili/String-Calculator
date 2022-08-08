@@ -1,4 +1,6 @@
 ﻿using Calculator.Calculators;
+using Calculator.Constants;
+using Calculator.Operators;
 
 namespace Calculator.Tests;
 
@@ -6,10 +8,12 @@ public class StringCalculatorTests
 {
     private readonly StringCalculator _stringCalculator;
     private readonly Mock<ICommaSeparatedCalculator> _commaSeperatedCalculatorMock;
+    private readonly Mock<IDelimiterOperator> _delimiterOperatorMock;
     public StringCalculatorTests()
     {
         _commaSeperatedCalculatorMock = new Mock<ICommaSeparatedCalculator>();
-        _stringCalculator = new StringCalculator(_commaSeperatedCalculatorMock.Object);
+        _delimiterOperatorMock = new Mock<IDelimiterOperator>();
+        _stringCalculator = new StringCalculator(_commaSeperatedCalculatorMock.Object, _delimiterOperatorMock.Object);
     }
 
     [Theory]
@@ -66,15 +70,23 @@ public class StringCalculatorTests
         actual.Should().Be(expected);
     }
     
-    [Theory]
-    [InlineData("//;\n1;2", 6)]
-    public void DelimiterBetweenNumbersStringValidationTest_ShouldReturnCorrespondingExpectedValue(string numbers,
-        decimal expected)
+    [Fact]
+    public void DelimiterBetweenNumbersStringValidationTest_ShouldReturnThree()
     {
+        var expected = 6M;
+        var numbers = "//;\n1;2";
+        var delimiter = ';';
+        
+        _delimiterOperatorMock.Setup(x => x.GetDelimiter(numbers))
+            .Returns(delimiter);
+        
         _commaSeperatedCalculatorMock.Setup(x => x.CommaNewLineSeperatedAdd(numbers))
             .Returns(expected);
-        
+
         var actual = _stringCalculator.Add(numbers);
+        
+        _delimiterOperatorMock.Verify(x => x.AddDelimiter(delimiter), Times.Once);
+        _delimiterOperatorMock.Verify(x => x.RemoveDelimiter(delimiter), Times.Once);
 
         actual.Should().Be(expected);
     }
