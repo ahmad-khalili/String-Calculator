@@ -7,11 +7,11 @@ namespace Calculator.Tests;
 public class StringCalculatorTests
 {
     private readonly StringCalculator _stringCalculator;
-    private readonly Mock<ICommaSeparatedCalculator> _commaSeperatedCalculatorMock;
+    private readonly Mock<ISeparatedNumbersCalculator> _commaSeperatedCalculatorMock;
     private readonly Mock<IDelimiterOperator> _delimiterOperatorMock;
     public StringCalculatorTests()
     {
-        _commaSeperatedCalculatorMock = new Mock<ICommaSeparatedCalculator>();
+        _commaSeperatedCalculatorMock = new Mock<ISeparatedNumbersCalculator>();
         _delimiterOperatorMock = new Mock<IDelimiterOperator>();
         _stringCalculator = new StringCalculator(_commaSeperatedCalculatorMock.Object, _delimiterOperatorMock.Object);
     }

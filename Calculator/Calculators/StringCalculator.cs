@@ -5,12 +5,12 @@ namespace Calculator.Calculators;
 
 public class StringCalculator
 {
-    private readonly ICommaSeparatedCalculator _commaSeparatedCalculator;
+    private readonly ISeparatedNumbersCalculator _separatedNumbersCalculator;
     private readonly IDelimiterOperator _delimiterOperator;
 
-    public StringCalculator(ICommaSeparatedCalculator commaSeparatedCalculator, IDelimiterOperator delimiterOperator)
+    public StringCalculator(ISeparatedNumbersCalculator separatedNumbersCalculator, IDelimiterOperator delimiterOperator)
     {
-        _commaSeparatedCalculator = commaSeparatedCalculator;
+        _separatedNumbersCalculator = separatedNumbersCalculator;
         _delimiterOperator = delimiterOperator;
     }
     
@@ -28,7 +28,7 @@ public class StringCalculator
 
         if (hasOneNumber) return decimal.Parse(numbers);
 
-        var result = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
+        var result = _separatedNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
 
         if (delimiterExists) _delimiterOperator.RemoveDelimiter(delimiter);
 

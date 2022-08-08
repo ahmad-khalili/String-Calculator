@@ -6,10 +6,10 @@ namespace Calculator.Tests;
 
 public class CommaSeparatedCalculatorTests
 {
-    private readonly CommaSeparatedCalculator _commaSeparatedCalculator;
+    private readonly SeparatedNumbersNumbersCalculator _separatedNumbersNumbersCalculator;
     public CommaSeparatedCalculatorTests()
     {
-        _commaSeparatedCalculator = new CommaSeparatedCalculator();
+        _separatedNumbersNumbersCalculator = new SeparatedNumbersNumbersCalculator();
     }
     
     [Theory]
@@ -17,7 +17,7 @@ public class CommaSeparatedCalculatorTests
     [InlineData("1,2,3", 6)]
     public void CommaSeparatedAdditionTest_ShouldReturnCorrespondingExpectedResult(string numbers, decimal expected)
     {
-        var actual = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
+        var actual = _separatedNumbersNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
 
         actual.Should().Be(expected);
     }
@@ -29,7 +29,7 @@ public class CommaSeparatedCalculatorTests
     public void MoreThanTwoGivenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
-        var actual = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
+        var actual = _separatedNumbersNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
 
         actual.Should().Be(expected);
     }
@@ -39,7 +39,7 @@ public class CommaSeparatedCalculatorTests
     public void NewLineBetweenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
-        var actual = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
+        var actual = _separatedNumbersNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
 
         actual.Should().Be(expected);
     }
@@ -52,7 +52,7 @@ public class CommaSeparatedCalculatorTests
         var delimiter = ';';
         StringConstants.Splitters.Add(delimiter);
 
-        var actual = _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
+        var actual = _separatedNumbersNumbersCalculator.CommaNewLineSeperatedAdd(numbers);
 
         actual.Should().Be(expected);
         StringConstants.Splitters.Remove(delimiter);

@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Calculators;
 
-public interface ICommaSeparatedCalculator
+public interface ISeparatedNumbersCalculator
 {
     decimal CommaNewLineSeperatedAdd(string numbers);
 }

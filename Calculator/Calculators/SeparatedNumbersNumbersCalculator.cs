@@ -2,7 +2,7 @@
 
 namespace Calculator.Calculators;
 
-public class CommaSeparatedCalculator : ICommaSeparatedCalculator
+public class SeparatedNumbersNumbersCalculator : ISeparatedNumbersCalculator
 {
     public decimal CommaNewLineSeperatedAdd(string numbers)
     {
