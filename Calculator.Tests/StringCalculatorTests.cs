@@ -36,4 +36,19 @@ public class StringCalculatorTests
 
         actual.Should().Be(expected);
     }
+
+    [Theory]
+    [InlineData("2,2,4",8)]
+    [InlineData("4,2,1,1",8)]
+    [InlineData("5,0,1,3,4",13)]
+    public void MoreThanTwoGivenNumbersStringValidationTest_ShouldReturnCorrespondingExpectedValue(string numbers,
+        decimal expected)
+    {
+        _commaSeperatedCalculatorMock.Setup(x => x.CommaSeperatedAdd(numbers))
+            .Returns(expected);
+
+        var actual = _stringCalculator.Add(numbers);
+
+        actual.Should().Be(expected);
+    }
 }
