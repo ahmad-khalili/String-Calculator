@@ -24,6 +24,6 @@ public class DelimiterOperator : IDelimiterOperator
 
     public void RemoveDelimiter(char delimiter)
     {
-        throw new NotImplementedException();
+        StringConstants.Splitters.Remove(delimiter);
     }
 }
