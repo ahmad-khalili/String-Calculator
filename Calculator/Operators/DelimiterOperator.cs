@@ -1,0 +1,29 @@
+﻿using Calculator.Constants;
+
+namespace Calculator.Operators;
+
+public class DelimiterOperator : IDelimiterOperator
+{
+    public char GetDelimiter(string numbers)
+    {
+        var delimiterPrefix = "//";
+        if (numbers.StartsWith(delimiterPrefix))
+        {
+            var delimiterIndex = 2;
+            var delimiter = numbers[delimiterIndex];
+            return delimiter;
+        }
+
+        return default;
+    }
+
+    public void AddDelimiter(char delimiter)
+    {
+        StringConstants.Splitters.Add(delimiter);
+    }
+
+    public void RemoveDelimiter(char delimiter)
+    {
+        StringConstants.Splitters.Remove(delimiter);
+    }
+}

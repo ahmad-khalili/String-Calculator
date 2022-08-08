@@ -1,24 +1,37 @@
+using Calculator.Constants;
+using Calculator.Operators;
+
 namespace Calculator.Calculators;
 
 public class StringCalculator
 {
-    private readonly char[] _splitters = { ',', '\n' };
-    
-    private readonly ICommaSeparatedCalculator _commaSeparatedCalculator;
+    private readonly ISeparatedNumbersCalculator _separatedNumbersCalculator;
+    private readonly IDelimiterOperator _delimiterOperator;
 
-    public StringCalculator(ICommaSeparatedCalculator commaSeparatedCalculator)
+    public StringCalculator(ISeparatedNumbersCalculator separatedNumbersCalculator, IDelimiterOperator delimiterOperator)
     {
-        _commaSeparatedCalculator = commaSeparatedCalculator;
+        _separatedNumbersCalculator = separatedNumbersCalculator;
+        _delimiterOperator = delimiterOperator;
     }
     
     public decimal Add(string numbers)
     {
+        var delimiter = _delimiterOperator.GetDelimiter(numbers);
+
+        var delimiterExists = delimiter != default;
+        
+        if (delimiterExists) _delimiterOperator.AddDelimiter(delimiter);
+        
         if (string.IsNullOrEmpty(numbers)) return 0;
 
-        var hasOneNumber = !_splitters.Any(numbers.Contains);
+        var hasOneNumber = !StringConstants.Splitters.Any(numbers.Contains);
 
         if (hasOneNumber) return decimal.Parse(numbers);
 
-        return _commaSeparatedCalculator.CommaNewLineSeperatedAdd(numbers);
+        var result = _separatedNumbersCalculator.SeparatedNumbersAdd(numbers);
+
+        if (delimiterExists) _delimiterOperator.RemoveDelimiter(delimiter);
+
+        return result;
     }
 }
