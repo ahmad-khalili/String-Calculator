@@ -3,10 +3,10 @@ using Calculator.Constants;
 
 namespace Calculator.Tests;
 
-public class CommaSeparatedCalculatorTests
+public class SeparatedNumbersCalculatorTests
 {
     private readonly SeparatedNumbersNumbersCalculator _separatedNumbersNumbersCalculator;
-    public CommaSeparatedCalculatorTests()
+    public SeparatedNumbersCalculatorTests()
     {
         _separatedNumbersNumbersCalculator = new SeparatedNumbersNumbersCalculator();
     }
@@ -14,7 +14,7 @@ public class CommaSeparatedCalculatorTests
     [Theory]
     [InlineData("0,0", 0)]
     [InlineData("1,2,3", 6)]
-    public void CommaSeparatedAdditionTest_ShouldReturnCorrespondingExpectedResult(string numbers, decimal expected)
+    public void SeparatedNumbersAddTest_ShouldReturnCorrespondingExpectedResult(string numbers, decimal expected)
     {
         var actual = _separatedNumbersNumbersCalculator.SeparatedNumbersAdd(numbers);
 
@@ -25,7 +25,7 @@ public class CommaSeparatedCalculatorTests
     [InlineData("2,2,4",8)]
     [InlineData("4,2,1,1",8)]
     [InlineData("5,0,1,3,4",13)]
-    public void MoreThanTwoGivenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
+    public void SeparatedNumbersAddTestWithMultipleNumbers_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
         var actual = _separatedNumbersNumbersCalculator.SeparatedNumbersAdd(numbers);
@@ -35,7 +35,7 @@ public class CommaSeparatedCalculatorTests
 
     [Theory]
     [InlineData("1\n2,3", 6)]
-    public void NewLineBetweenNumbersStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
+    public void SeparatedNumbersAddTestWithNewLines_ShouldReturnCorrespondingExpectedValue(string numbers,
         decimal expected)
     {
         var actual = _separatedNumbersNumbersCalculator.SeparatedNumbersAdd(numbers);
@@ -44,7 +44,7 @@ public class CommaSeparatedCalculatorTests
     }
     
     [Fact]
-    public void DelimiterBetweenNumbersStringAdditionTest_ShouldReturnThree()
+    public void SeparatedNumbersAddTestWithCustomDelimiter_ShouldReturnThree()
     {
         var numbers = "//;\n1;2";
         var expected = 3M;
@@ -55,5 +55,16 @@ public class CommaSeparatedCalculatorTests
 
         actual.Should().Be(expected);
         StringConstants.Splitters.Remove(delimiter);
+    }
+
+    [Theory]
+    [InlineData("2,1001", 2)]
+    [InlineData("1000,4,2,1101", 1006)]
+    public void SeparatedNumbersAddTestWithBigNumbers_ShouldIgnoreNumbersBiggerThanThousand(string numbers,
+        decimal expected)
+    {
+        var actual = _separatedNumbersNumbersCalculator.SeparatedNumbersAdd(numbers);
+
+        actual.Should().Be(expected);
     }
 }

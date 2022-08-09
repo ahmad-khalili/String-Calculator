@@ -15,8 +15,9 @@ public class SeparatedNumbersNumbersCalculator : ISeparatedNumbersCalculator
             numbersArray = numbersArray.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
             foreach (var number in numbersArray)
             {
-                Console.WriteLine(number);
-                result += decimal.Parse(number);
+                var realNumber = decimal.Parse(number);
+                if (realNumber <= 1000)
+                    result += decimal.Parse(number);
             }
         }
 

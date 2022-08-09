@@ -21,8 +21,7 @@ public class StringCalculatorTests
     [Theory]
     [InlineData("",0)]
     [InlineData("1",1)]
-    public void EmptyAndOneNumberStringAdditionTest_ShouldReturnCorrespondingExpectedValue(string numbers,
-        decimal expected)
+    public void AddTestWithOneAndEmptyNumbers_ShouldReturnSum(string numbers, decimal expected)
     {
         var actual = _stringCalculator.Add(numbers);
 
@@ -30,7 +29,7 @@ public class StringCalculatorTests
     }
 
     [Fact]
-    public void TwoNumbersStringAdditionTest_ShouldReturnSum()
+    public void AddTestWithTwoNumbers_ShouldCallSeparatedNumbersAdd()
     {
         var expected = 3;
         var testString = "1,2";
@@ -39,6 +38,9 @@ public class StringCalculatorTests
             .Returns(expected);
 
         var actual = _stringCalculator.Add(testString);
+        
+        _commaSeperatedCalculatorMock.Verify(x => x.SeparatedNumbersAdd(testString),
+            Times.Once);
 
         actual.Should().Be(expected);
     }
@@ -47,13 +49,15 @@ public class StringCalculatorTests
     [InlineData("2,2,4",8)]
     [InlineData("4,2,1,1",8)]
     [InlineData("5,0,1,3,4",13)]
-    public void MoreThanTwoGivenNumbersStringValidationTest_ShouldReturnCorrespondingExpectedValue(string numbers,
-        decimal expected)
+    public void AddTestWithMultipleNumbers_ShouldCallSeparatedNumbersAdd(string numbers, decimal expected)
     {
         _commaSeperatedCalculatorMock.Setup(x => x.SeparatedNumbersAdd(numbers))
             .Returns(expected);
 
         var actual = _stringCalculator.Add(numbers);
+        
+        _commaSeperatedCalculatorMock.Verify(x => x.SeparatedNumbersAdd(numbers),
+            Times.Once);
 
         actual.Should().Be(expected);
     }
@@ -61,19 +65,21 @@ public class StringCalculatorTests
     [Theory]
     [InlineData("1\n2,3", 6)]
     [InlineData("1\n2",3)]
-    public void NewLineBetweenNumbersStringValidationTest_ShouldReturnCorrespondingExpectedValue(string numbers,
-        decimal expected)
+    public void AddTestWithNewLines_ShouldCallSeparatedNumbersAdd(string numbers, decimal expected)
     {
         _commaSeperatedCalculatorMock.Setup(x => x.SeparatedNumbersAdd(numbers))
             .Returns(expected);
         
         var actual = _stringCalculator.Add(numbers);
+        
+        _commaSeperatedCalculatorMock.Verify(x => x.SeparatedNumbersAdd(numbers),
+            Times.Once);
 
         actual.Should().Be(expected);
     }
     
     [Fact]
-    public void DelimiterBetweenNumbersStringValidationTest_ShouldReturnThree()
+    public void AddTestWithCustomDelimiter_ShouldCallDelimiterHandlerAndSeparatedNumbersAdd()
     {
         var expected = 6M;
         var numbers = "//;\n1;2";
@@ -89,12 +95,14 @@ public class StringCalculatorTests
         
         _delimiterOperatorMock.Verify(x => x.AddDelimiter(delimiter), Times.Once);
         _delimiterOperatorMock.Verify(x => x.RemoveDelimiter(delimiter), Times.Once);
+        _commaSeperatedCalculatorMock.Verify(x => x.SeparatedNumbersAdd(numbers),
+            Times.Once);
 
         actual.Should().Be(expected);
     }
 
     [Fact]
-    public void StringCalculatorAddTestWithNegativeNumbers_ShouldThrowException()
+    public void AddTestWithNegativeNumbers_ShouldThrowArgumentException()
     {
         var numbersTest = "1,4,-1";
         var expectedExceptionMessage = "Negatives not allowed: -1";
@@ -105,5 +113,22 @@ public class StringCalculatorTests
         var act = () => _stringCalculator.Add(numbersTest);
 
         act.Should().Throw<ArgumentException>().WithMessage(expectedExceptionMessage);
+    }
+
+    [Fact]
+    public void AddTestWithBigNumbers_ShouldCallSeparatedNumbersAdd()
+    {
+        var testString = "2,1001";
+        var expected = 2M;
+
+        _commaSeperatedCalculatorMock.Setup(x => x.SeparatedNumbersAdd(testString))
+            .Returns(expected);
+
+        var actual = _stringCalculator.Add(testString);
+        
+        _commaSeperatedCalculatorMock.Verify(x => x.SeparatedNumbersAdd(testString),
+            Times.Once);
+
+        actual.Should().Be(expected);
     }
 }
