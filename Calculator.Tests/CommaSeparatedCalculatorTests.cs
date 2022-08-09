@@ -1,6 +1,5 @@
 ﻿using Calculator.Calculators;
 using Calculator.Constants;
-using Calculator.Operators;
 
 namespace Calculator.Tests;
 
