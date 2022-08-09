@@ -9,11 +9,14 @@ public class StringCalculatorTests
     private readonly StringCalculator _stringCalculator;
     private readonly Mock<ISeparatedNumbersCalculator> _commaSeperatedCalculatorMock;
     private readonly Mock<IDelimiterOperator> _delimiterOperatorMock;
+    private readonly Mock<INegativeFinder> _negativeFinderMock;
     public StringCalculatorTests()
     {
         _commaSeperatedCalculatorMock = new Mock<ISeparatedNumbersCalculator>();
         _delimiterOperatorMock = new Mock<IDelimiterOperator>();
-        _stringCalculator = new StringCalculator(_commaSeperatedCalculatorMock.Object, _delimiterOperatorMock.Object);
+        _negativeFinderMock = new Mock<INegativeFinder>();
+        _stringCalculator = new StringCalculator(_commaSeperatedCalculatorMock.Object, _delimiterOperatorMock.Object, 
+            _negativeFinderMock.Object);
     }
 
     [Theory]
@@ -96,6 +99,9 @@ public class StringCalculatorTests
     {
         var numbersTest = "1,4,-1";
         var expectedExceptionMessage = "Negatives not allowed: -1";
+        var expectedNegatives = new List<string> { "-1" };
+        _negativeFinderMock.Setup(x => x.GetNegatives(numbersTest))
+            .Returns(expectedNegatives);
 
         var act = () => _stringCalculator.Add(numbersTest);
 
