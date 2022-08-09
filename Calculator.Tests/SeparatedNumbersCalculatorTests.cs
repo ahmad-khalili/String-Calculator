@@ -3,10 +3,10 @@ using Calculator.Constants;
 
 namespace Calculator.Tests;
 
-public class CommaSeparatedCalculatorTests
+public class SeparatedNumbersCalculatorTests
 {
     private readonly SeparatedNumbersNumbersCalculator _separatedNumbersNumbersCalculator;
-    public CommaSeparatedCalculatorTests()
+    public SeparatedNumbersCalculatorTests()
     {
         _separatedNumbersNumbersCalculator = new SeparatedNumbersNumbersCalculator();
     }
@@ -55,5 +55,16 @@ public class CommaSeparatedCalculatorTests
 
         actual.Should().Be(expected);
         StringConstants.Splitters.Remove(delimiter);
+    }
+
+    [Theory]
+    [InlineData("2,1001", 2)]
+    [InlineData("1000,4,2,1101", 6)]
+    public void SeparatedNumbersAddTestWithBigNumbers_ShouldIgnoreNumbersBiggerThanThousand(string numbers,
+        decimal expected)
+    {
+        var actual = _separatedNumbersNumbersCalculator.SeparatedNumbersAdd(numbers);
+
+        actual.Should().Be(expected);
     }
 }

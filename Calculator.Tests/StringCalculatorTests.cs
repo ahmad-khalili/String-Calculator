@@ -106,4 +106,18 @@ public class StringCalculatorTests
 
         act.Should().Throw<ArgumentException>().WithMessage(expectedExceptionMessage);
     }
+
+    [Fact]
+    public void AddTestWithBigNumbers_ShouldReturnSumWithoutBigNumbers()
+    {
+        var numbers = "2,1001";
+        var expected = 2M;
+
+        _commaSeperatedCalculatorMock.Setup(x => x.SeparatedNumbersAdd(numbers))
+            .Returns(expected);
+
+        var actual = _stringCalculator.Add(numbers);
+
+        actual.Should().Be(expected);
+    }
 }
