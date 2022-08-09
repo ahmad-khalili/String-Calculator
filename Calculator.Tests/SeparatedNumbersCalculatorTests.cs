@@ -59,7 +59,7 @@ public class SeparatedNumbersCalculatorTests
 
     [Theory]
     [InlineData("2,1001", 2)]
-    [InlineData("1000,4,2,1101", 6)]
+    [InlineData("1000,4,2,1101", 1006)]
     public void SeparatedNumbersAddTestWithBigNumbers_ShouldIgnoreNumbersBiggerThanThousand(string numbers,
         decimal expected)
     {
