@@ -34,7 +34,7 @@ public class StringCalculator
 
         var negatives = _negativeFinder.GetNegatives(numbers);
 
-        if (negatives.Any()) throw new ArgumentException($"negatives not allowed: {negatives.Print()}");
+        if (negatives != null) throw new ArgumentException($"negatives not allowed: {negatives.Print()}");
 
         var result = _separatedNumbersCalculator.SeparatedNumbersAdd(numbers);
 
