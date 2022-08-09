@@ -90,4 +90,15 @@ public class StringCalculatorTests
 
         actual.Should().Be(expected);
     }
+
+    [Fact]
+    public void StringCalculatorAddTestWithNegativeNumbers_ShouldThrowException()
+    {
+        var numbersTest = "1,4,-1";
+        var expectedExceptionMessage = "Negatives not allowed: -1";
+
+        var act = () => _stringCalculator.Add(numbersTest);
+
+        act.Should().Throw<ArgumentException>().WithMessage(expectedExceptionMessage);
+    }
 }
